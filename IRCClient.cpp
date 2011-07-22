@@ -11,6 +11,7 @@ IRCClient::IRCClient(boost::asio::io_service& io_service,
         tcp::resolver::iterator endpoint_iterator)
 : io_service_(io_service),
 socket_(io_service) {
+    this->populate_handlers();
     tcp::endpoint endpoint = *endpoint_iterator;
     socket_.async_connect(endpoint,
             boost::bind(&IRCClient::handle_connect, this,
@@ -95,14 +96,17 @@ void IRCClient::populate_handlers(void) {
 
 void IRCClient::process_message(IRCMessage msg) {
     map::const_iterator iter = this->irc_handlers_.find(msg.get_command());
-    
+    std::cout << msg.get_message() << std::endl;
+    std::cout << msg.get_command() << std::endl;
     if(this->irc_handlers_.find(msg.get_command()) != this->irc_handlers_.end()) {
         IRCHandler h = this->irc_handlers_[msg.get_command()];
-        CALL_MEMBER_FN(this, h)(msg);
+        (this->*h)(msg);
+    } else {
+        std::cout << "Unknown command - \"" << msg.get_command() << "\"" <<  std::endl;
     }
 }
 
 void IRCClient::ping_handler(IRCMessage msg) {
-    std::cout << "PONG!";
+    std::cout << "PONG " + boost::join(msg.get_parameters(), " ") + "\r\n";
     this->do_write("PONG " + boost::join(msg.get_parameters(), " ") + "\r\n");
 }

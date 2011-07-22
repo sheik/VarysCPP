@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/IRCBotProcessor.o \
 	${OBJECTDIR}/IRCClient.o \
 	${OBJECTDIR}/IRCMessage.o
 
@@ -67,6 +68,11 @@ ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/IRCBotProcessor.o: IRCBotProcessor.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/IRCBotProcessor.o IRCBotProcessor.cpp
 
 ${OBJECTDIR}/IRCClient.o: IRCClient.cpp 
 	${MKDIR} -p ${OBJECTDIR}
