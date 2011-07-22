@@ -1,1 +1,6 @@
 IRC Client / bot using boost
+
+Run:
+make CONF=Release
+or
+make CONF=Debug
