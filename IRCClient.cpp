@@ -89,7 +89,20 @@ void IRCClient::do_close() {
     socket_.close();
 }
 
+void IRCClient::populate_handlers(void) {
+    this->irc_handlers_["PING"] = &IRCClient::ping_handler;
+}
+
 void IRCClient::process_message(IRCMessage msg) {
-    std::cout << msg.get_message() << std::endl;
-    std::cout << msg.get_command() << std::endl;
+    map::const_iterator iter = this->irc_handlers_.find(msg.get_command());
+    
+    if(this->irc_handlers_.find(msg.get_command()) != this->irc_handlers_.end()) {
+        IRCHandler h = this->irc_handlers_[msg.get_command()];
+        CALL_MEMBER_FN(this, h)(msg);
+    }
+}
+
+void IRCClient::ping_handler(IRCMessage msg) {
+    std::cout << "PONG!";
+    this->do_write("PONG " + boost::join(msg.get_parameters(), " ") + "\r\n");
 }

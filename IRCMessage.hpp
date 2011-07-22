@@ -13,8 +13,6 @@
 #include <string>
 #include <deque>
 
-#define DEBUG 1
-
 class IRCMessage {
 public:
     IRCMessage();
