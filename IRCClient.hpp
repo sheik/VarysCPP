@@ -16,8 +16,7 @@
 #include <boost/asio.hpp>
 #include <boost/unordered_map.hpp>
 #include "IRCMessage.hpp"
-
-#define CALL_MEMBER_FN(object,ptrToMember)  ((object).*(ptrToMember))
+#include "IRCBotProcessor.hpp"
 
 using boost::asio::ip::tcp;
 typedef std::deque<std::string> irc_message_queue;
@@ -39,6 +38,8 @@ private:
     boost::asio::streambuf _response;
     irc_message_queue write_messages_;
     map irc_handlers_;
+    
+    IRCBotProcessor processor;
     
     void populate_handlers(void);
     void handle_connect(const boost::system::error_code& error,

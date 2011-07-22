@@ -11,7 +11,8 @@ IRCClient::IRCClient(boost::asio::io_service& io_service,
         tcp::resolver::iterator endpoint_iterator)
 : io_service_(io_service),
 socket_(io_service) {
-    this->populate_handlers();
+    this->processor = IRCBotProcessor();
+    this->processor.populate_handlers();
     tcp::endpoint endpoint = *endpoint_iterator;
     socket_.async_connect(endpoint,
             boost::bind(&IRCClient::handle_connect, this,

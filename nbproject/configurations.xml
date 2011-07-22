@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>IRCBotProcessor.hpp</itemPath>
       <itemPath>IRCClient.hpp</itemPath>
       <itemPath>IRCMessage.hpp</itemPath>
       <itemPath>IRCProcessor.hpp</itemPath>
@@ -15,6 +16,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>IRCBotProcessor.cpp</itemPath>
       <itemPath>IRCClient.cpp</itemPath>
       <itemPath>IRCMessage.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -30,8 +32,6 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>IRCBotProcessor.cpp</itemPath>
-    <itemPath>IRCBotProcessor.hpp</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

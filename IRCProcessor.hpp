@@ -8,7 +8,7 @@
 #ifndef IRCPROCESSOR_HPP
 #define	IRCPROCESSOR_HPP
 
-#include <boost/unordered_map.hpp>
+#include "IRCClient.hpp"
 #include "IRCMessage.hpp"
 
 class IRCProcessor {
@@ -16,7 +16,6 @@ public:
     virtual ~IRCProcessor() {};
     virtual void populate_handlers(void) = 0;
     typedef void (IRCProcessor::* IRCHandler)(IRCMessage msg);
-    boost::unordered_map<std::string, IRCHandler> irc_handlers_;
 };
 
 #endif	/* IRCPROCESSOR_HPP */
