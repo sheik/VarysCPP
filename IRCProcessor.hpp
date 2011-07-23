@@ -14,7 +14,7 @@
 class IRCProcessor {
 public:
     virtual ~IRCProcessor() {};
-    virtual void populate_handlers(void) = 0;
+    virtual void populate_handlers(void);
     typedef void (IRCProcessor::* IRCHandler)(IRCMessage msg);
     boost::unordered_map<std::string, IRCHandler> irc_handlers_;
 };

@@ -34,9 +34,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/IRCMediator.o \
 	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/IRCBotProcessor.o \
 	${OBJECTDIR}/IRCClient.o \
+	${OBJECTDIR}/IRCProcessor.o \
 	${OBJECTDIR}/IRCMessage.o
 
 
@@ -64,20 +65,25 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/varyscpp: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/varyscpp ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
+${OBJECTDIR}/IRCMediator.o: IRCMediator.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/IRCMediator.o IRCMediator.cpp
+
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
 
-${OBJECTDIR}/IRCBotProcessor.o: IRCBotProcessor.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/IRCBotProcessor.o IRCBotProcessor.cpp
-
 ${OBJECTDIR}/IRCClient.o: IRCClient.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/IRCClient.o IRCClient.cpp
+
+${OBJECTDIR}/IRCProcessor.o: IRCProcessor.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/IRCProcessor.o IRCProcessor.cpp
 
 ${OBJECTDIR}/IRCMessage.o: IRCMessage.cpp 
 	${MKDIR} -p ${OBJECTDIR}
